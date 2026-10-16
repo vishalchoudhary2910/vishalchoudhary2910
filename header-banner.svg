@@ -1,0 +1,465 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 300" width="100%">
+  <defs>
+    <style>
+      @keyframes levitate {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-12px); }
+      }
+      @keyframes levitate2 {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-8px); }
+      }
+      @keyframes levitate3 {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+      }
+      @keyframes pulse {
+        0%, 100% { opacity: 0.3; r: 40; }
+        50% { opacity: 0.7; r: 55; }
+      }
+      @keyframes pulse2 {
+        0%, 100% { opacity: 0.2; r: 30; }
+        50% { opacity: 0.5; r: 42; }
+      }
+      @keyframes pulse3 {
+        0%, 100% { opacity: 0.15; r: 50; }
+        50% { opacity: 0.4; r: 65; }
+      }
+      @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(10px); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      @keyframes twinkle {
+        0%, 100% { opacity: 0.15; }
+        50% { opacity: 0.9; }
+      }
+      @keyframes twinkle2 {
+        0%, 100% { opacity: 0.1; }
+        40% { opacity: 0.75; }
+        60% { opacity: 0.8; }
+      }
+      @keyframes twinkle3 {
+        0%, 100% { opacity: 0.2; }
+        50% { opacity: 1; }
+      }
+      @keyframes glow {
+        0%, 100% { opacity: 0.5; }
+        50% { opacity: 1; }
+      }
+      @keyframes shimmer {
+        0% { opacity: 0.4; }
+        50% { opacity: 0.8; }
+        100% { opacity: 0.4; }
+      }
+      @keyframes borderGlow {
+        0%, 100% { stroke-opacity: 0.3; }
+        50% { stroke-opacity: 0.8; }
+      }
+      @keyframes cursorBlink {
+        0%, 49% { opacity: 1; }
+        50%, 100% { opacity: 0; }
+      }
+      @keyframes gridPulse {
+        0%, 100% { opacity: 0.04; }
+        50% { opacity: 0.08; }
+      }
+      @keyframes orbFloat {
+        0%, 100% { transform: translate(0, 0); }
+        25% { transform: translate(5px, -5px); }
+        50% { transform: translate(0, -10px); }
+        75% { transform: translate(-5px, -5px); }
+      }
+
+      .title-text {
+        font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+        font-weight: 800;
+        font-size: 38px;
+        fill: #ffffff;
+        letter-spacing: 4px;
+        animation: fadeIn 1s ease-out forwards;
+      }
+      .subtitle-code {
+        font-family: 'SFMono-Regular', 'Cascadia Code', 'Fira Code', 'JetBrains Mono', 'Consolas', monospace;
+        font-size: 13px;
+        animation: fadeIn 1.2s ease-out 0.3s both;
+      }
+      .terminal-text {
+        font-family: 'SFMono-Regular', 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+        font-size: 11px;
+        animation: fadeIn 1.4s ease-out 0.5s both;
+      }
+      .cube-group {
+        animation: levitate 4s ease-in-out infinite;
+      }
+      .cube-group-2 {
+        animation: levitate2 3.5s ease-in-out 0.5s infinite;
+      }
+      .cube-group-3 {
+        animation: levitate3 5s ease-in-out 1s infinite;
+      }
+      .particle { animation: twinkle 3s ease-in-out infinite; }
+      .particle-2 { animation: twinkle2 4s ease-in-out 0.5s infinite; }
+      .particle-3 { animation: twinkle3 2.5s ease-in-out 1s infinite; }
+      .particle-4 { animation: twinkle 3.5s ease-in-out 1.5s infinite; }
+      .particle-5 { animation: twinkle2 2.8s ease-in-out 0.8s infinite; }
+      .particle-6 { animation: twinkle3 4.2s ease-in-out 2s infinite; }
+      .orb-1 { animation: pulse 5s ease-in-out infinite, orbFloat 8s ease-in-out infinite; }
+      .orb-2 { animation: pulse2 4s ease-in-out 1s infinite, orbFloat 10s ease-in-out 2s infinite; }
+      .orb-3 { animation: pulse3 6s ease-in-out 2s infinite, orbFloat 12s ease-in-out 1s infinite; }
+      .grid-pattern { animation: gridPulse 6s ease-in-out infinite; }
+      .cursor-blink { animation: cursorBlink 1s step-end infinite; }
+      .border-glow { animation: borderGlow 3s ease-in-out infinite; }
+      .title-glow { animation: glow 3s ease-in-out infinite; }
+      .shimmer-line { animation: shimmer 4s ease-in-out infinite; }
+    </style>
+
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117" />
+      <stop offset="40%" style="stop-color:#111922" />
+      <stop offset="100%" style="stop-color:#161b22" />
+    </linearGradient>
+
+    <!-- Top edge subtle gradient -->
+    <linearGradient id="topEdge" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#238636; stop-opacity:0" />
+      <stop offset="30%" style="stop-color:#58a6ff; stop-opacity:0.4" />
+      <stop offset="70%" style="stop-color:#d2a8ff; stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#238636; stop-opacity:0" />
+    </linearGradient>
+
+    <!-- Cube face gradients -->
+    <linearGradient id="cubeTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7ee787" />
+      <stop offset="100%" style="stop-color:#238636" />
+    </linearGradient>
+    <linearGradient id="cubeLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#238636" />
+      <stop offset="100%" style="stop-color:#1a6b2c" />
+    </linearGradient>
+    <linearGradient id="cubeRight" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#2ea043" />
+      <stop offset="100%" style="stop-color:#196c2e" />
+    </linearGradient>
+
+    <!-- Blue cube -->
+    <linearGradient id="cubeTopBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a5d6ff" />
+      <stop offset="100%" style="stop-color:#58a6ff" />
+    </linearGradient>
+    <linearGradient id="cubeLeftBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#58a6ff" />
+      <stop offset="100%" style="stop-color:#1f6feb" />
+    </linearGradient>
+    <linearGradient id="cubeRightBlue" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#388bfd" />
+      <stop offset="100%" style="stop-color:#1158c7" />
+    </linearGradient>
+
+    <!-- Purple cube -->
+    <linearGradient id="cubeTopPurple" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e2c5ff" />
+      <stop offset="100%" style="stop-color:#d2a8ff" />
+    </linearGradient>
+    <linearGradient id="cubeLeftPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d2a8ff" />
+      <stop offset="100%" style="stop-color:#8b5fd8" />
+    </linearGradient>
+    <linearGradient id="cubeRightPurple" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#bc8cff" />
+      <stop offset="100%" style="stop-color:#7c3aed" />
+    </linearGradient>
+
+    <!-- Orb gradients -->
+    <radialGradient id="orbGrad1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#58a6ff; stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#58a6ff; stop-opacity:0" />
+    </radialGradient>
+    <radialGradient id="orbGrad2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#d2a8ff; stop-opacity:0.35" />
+      <stop offset="100%" style="stop-color:#d2a8ff; stop-opacity:0" />
+    </radialGradient>
+    <radialGradient id="orbGrad3" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#7ee787; stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#7ee787; stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Title glow gradient -->
+    <radialGradient id="titleGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#58a6ff; stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:#58a6ff; stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Soft glow filter -->
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Strong glow filter -->
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Shadow filter -->
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.5" />
+    </filter>
+  </defs>
+
+  <!-- ==================== BACKGROUND ==================== -->
+  <rect width="850" height="300" fill="url(#bgGrad)" rx="12" />
+
+  <!-- Rounded border with glow -->
+  <rect width="848" height="298" x="1" y="1" fill="none" rx="11" stroke="url(#topEdge)" stroke-width="1.5" class="border-glow" />
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="850" height="2" fill="url(#topEdge)" rx="1" class="shimmer-line" />
+
+  <!-- ==================== GRID PATTERN ==================== -->
+  <g class="grid-pattern">
+    <!-- Vertical lines -->
+    <line x1="100" y1="0" x2="100" y2="300" stroke="#30363d" stroke-width="0.3" />
+    <line x1="200" y1="0" x2="200" y2="300" stroke="#30363d" stroke-width="0.3" />
+    <line x1="300" y1="0" x2="300" y2="300" stroke="#30363d" stroke-width="0.3" />
+    <line x1="400" y1="0" x2="400" y2="300" stroke="#30363d" stroke-width="0.3" />
+    <line x1="500" y1="0" x2="500" y2="300" stroke="#30363d" stroke-width="0.3" />
+    <line x1="600" y1="0" x2="600" y2="300" stroke="#30363d" stroke-width="0.3" />
+    <line x1="700" y1="0" x2="700" y2="300" stroke="#30363d" stroke-width="0.3" />
+    <line x1="800" y1="0" x2="800" y2="300" stroke="#30363d" stroke-width="0.3" />
+    <!-- Horizontal lines -->
+    <line x1="0" y1="50" x2="850" y2="50" stroke="#30363d" stroke-width="0.3" />
+    <line x1="0" y1="100" x2="850" y2="100" stroke="#30363d" stroke-width="0.3" />
+    <line x1="0" y1="150" x2="850" y2="150" stroke="#30363d" stroke-width="0.3" />
+    <line x1="0" y1="200" x2="850" y2="200" stroke="#30363d" stroke-width="0.3" />
+    <line x1="0" y1="250" x2="850" y2="250" stroke="#30363d" stroke-width="0.3" />
+  </g>
+
+  <!-- ==================== GLOWING ORBS ==================== -->
+  <circle cx="680" cy="80" fill="url(#orbGrad1)" class="orb-1" r="40" filter="url(#strongGlow)" />
+  <circle cx="180" cy="250" fill="url(#orbGrad2)" class="orb-2" r="30" filter="url(#strongGlow)" />
+  <circle cx="780" cy="230" fill="url(#orbGrad3)" class="orb-3" r="50" filter="url(#strongGlow)" />
+
+  <!-- ==================== PARTICLES / STARS ==================== -->
+  <g filter="url(#glow)">
+    <!-- Layer 1 - bright particles -->
+    <circle cx="120" cy="35" r="1.2" fill="#58a6ff" class="particle" />
+    <circle cx="310" cy="55" r="1" fill="#d2a8ff" class="particle-2" />
+    <circle cx="520" cy="28" r="1.5" fill="#7ee787" class="particle-3" />
+    <circle cx="690" cy="42" r="1" fill="#a5d6ff" class="particle-4" />
+    <circle cx="780" cy="65" r="1.3" fill="#58a6ff" class="particle-5" />
+    <circle cx="420" cy="275" r="1.2" fill="#d2a8ff" class="particle-6" />
+    <circle cx="250" cy="20" r="0.8" fill="#ff7b72" class="particle" />
+    <circle cx="600" cy="280" r="1.1" fill="#7ee787" class="particle-2" />
+    <circle cx="830" cy="150" r="1" fill="#58a6ff" class="particle-3" />
+    <circle cx="50" cy="180" r="1.3" fill="#d2a8ff" class="particle-4" />
+    <circle cx="750" cy="170" r="0.9" fill="#a5d6ff" class="particle-5" />
+    <circle cx="400" cy="15" r="1.1" fill="#7ee787" class="particle-6" />
+
+    <!-- Layer 2 - dim particles -->
+    <circle cx="85" cy="95" r="0.7" fill="#58a6ff" class="particle-3" />
+    <circle cx="200" cy="70" r="0.6" fill="#d2a8ff" class="particle" />
+    <circle cx="340" cy="280" r="0.8" fill="#7ee787" class="particle-5" />
+    <circle cx="460" cy="85" r="0.5" fill="#a5d6ff" class="particle-2" />
+    <circle cx="580" cy="60" r="0.7" fill="#ff7b72" class="particle-4" />
+    <circle cx="720" cy="275" r="0.6" fill="#58a6ff" class="particle-6" />
+    <circle cx="160" cy="140" r="0.8" fill="#d2a8ff" class="particle" />
+    <circle cx="810" cy="25" r="0.9" fill="#7ee787" class="particle-3" />
+    <circle cx="30" cy="265" r="0.7" fill="#a5d6ff" class="particle-5" />
+    <circle cx="650" cy="15" r="0.6" fill="#d2a8ff" class="particle-2" />
+    <circle cx="500" cy="260" r="0.8" fill="#58a6ff" class="particle-4" />
+    <circle cx="280" cy="160" r="0.5" fill="#7ee787" class="particle-6" />
+  </g>
+
+  <!-- ==================== ISOMETRIC CUBES ==================== -->
+  <!-- Main green cube (large) -->
+  <g class="cube-group" filter="url(#shadow)">
+    <g transform="translate(95, 110)">
+      <!-- Top face -->
+      <polygon points="0,-20 35,-40 70,-20 35,0" fill="url(#cubeTop)" opacity="0.95" />
+      <!-- Left face -->
+      <polygon points="0,-20 35,0 35,45 0,25" fill="url(#cubeLeft)" opacity="0.9" />
+      <!-- Right face -->
+      <polygon points="70,-20 35,0 35,45 70,25" fill="url(#cubeRight)" opacity="0.85" />
+      <!-- Edge highlights -->
+      <line x1="35" y1="-40" x2="35" y2="0" stroke="#7ee787" stroke-width="0.5" opacity="0.4" />
+      <line x1="0" y1="-20" x2="35" y2="-40" stroke="#7ee787" stroke-width="0.5" opacity="0.3" />
+      <line x1="35" y1="-40" x2="70" y2="-20" stroke="#7ee787" stroke-width="0.5" opacity="0.3" />
+    </g>
+  </g>
+
+  <!-- Blue cube (medium, offset right and up) -->
+  <g class="cube-group-2" filter="url(#shadow)">
+    <g transform="translate(155, 85)">
+      <!-- Top face -->
+      <polygon points="0,-15 25,-30 50,-15 25,0" fill="url(#cubeTopBlue)" opacity="0.95" />
+      <!-- Left face -->
+      <polygon points="0,-15 25,0 25,35 0,20" fill="url(#cubeLeftBlue)" opacity="0.9" />
+      <!-- Right face -->
+      <polygon points="50,-15 25,0 25,35 50,20" fill="url(#cubeRightBlue)" opacity="0.85" />
+      <!-- Edge highlights -->
+      <line x1="25" y1="-30" x2="25" y2="0" stroke="#a5d6ff" stroke-width="0.5" opacity="0.4" />
+    </g>
+  </g>
+
+  <!-- Purple cube (small, lower) -->
+  <g class="cube-group-3" filter="url(#shadow)">
+    <g transform="translate(60, 170)">
+      <!-- Top face -->
+      <polygon points="0,-12 20,-24 40,-12 20,0" fill="url(#cubeTopPurple)" opacity="0.95" />
+      <!-- Left face -->
+      <polygon points="0,-12 20,0 20,28 0,16" fill="url(#cubeLeftPurple)" opacity="0.9" />
+      <!-- Right face -->
+      <polygon points="40,-12 20,0 20,28 40,16" fill="url(#cubeRightPurple)" opacity="0.85" />
+      <!-- Edge highlights -->
+      <line x1="20" y1="-24" x2="20" y2="0" stroke="#e2c5ff" stroke-width="0.5" opacity="0.4" />
+    </g>
+  </g>
+
+  <!-- Small green cube (accent, high) -->
+  <g class="cube-group-2" filter="url(#shadow)">
+    <g transform="translate(130, 165)">
+      <!-- Top face -->
+      <polygon points="0,-10 17,-20 34,-10 17,0" fill="url(#cubeTop)" opacity="0.9" />
+      <!-- Left face -->
+      <polygon points="0,-10 17,0 17,22 0,12" fill="url(#cubeLeft)" opacity="0.85" />
+      <!-- Right face -->
+      <polygon points="34,-10 17,0 17,22 34,12" fill="url(#cubeRight)" opacity="0.8" />
+    </g>
+  </g>
+
+  <!-- Tiny blue cube (floating accent) -->
+  <g class="cube-group" filter="url(#shadow)">
+    <g transform="translate(185, 145)">
+      <polygon points="0,-8 14,-16 28,-8 14,0" fill="url(#cubeTopBlue)" opacity="0.85" />
+      <polygon points="0,-8 14,0 14,18 0,10" fill="url(#cubeLeftBlue)" opacity="0.8" />
+      <polygon points="28,-8 14,0 14,18 28,10" fill="url(#cubeRightBlue)" opacity="0.75" />
+    </g>
+  </g>
+
+  <!-- ==================== CUBE SHADOW ON GROUND ==================== -->
+  <ellipse cx="130" cy="230" rx="55" ry="8" fill="#000000" opacity="0.25" class="cube-group">
+    <animate attributeName="opacity" values="0.25;0.15;0.25" dur="4s" repeatCount="indefinite" />
+  </ellipse>
+
+  <!-- ==================== TITLE AREA ==================== -->
+  <!-- Title glow background -->
+  <ellipse cx="500" cy="110" rx="200" ry="50" fill="url(#titleGlow)" class="title-glow" />
+
+  <!-- Decorative line before title -->
+  <line x1="290" y1="88" x2="350" y2="88" stroke="#58a6ff" stroke-width="1.5" opacity="0.5" class="shimmer-line" />
+  <circle cx="285" cy="88" r="2.5" fill="#58a6ff" opacity="0.6" class="particle" />
+
+  <!-- Main Title -->
+  <text x="365" y="105" class="title-text" filter="url(#softGlow)">VISHAL CHOUDHARY</text>
+
+  <!-- Decorative line after title -->
+  <line x1="365" y1="120" x2="710" y2="120" stroke="#30363d" stroke-width="0.8" opacity="0.5" />
+  <line x1="365" y1="120" x2="540" y2="120" stroke="#58a6ff" stroke-width="0.8" opacity="0.4" class="shimmer-line" />
+
+  <!-- ==================== CODE SUBTITLE ==================== -->
+  <g class="subtitle-code">
+    <!-- Code bracket and syntax highlighting -->
+    <text x="310" y="155">
+      <tspan fill="#ff7b72">const</tspan>
+      <tspan fill="#a5d6ff"> passion</tspan>
+      <tspan fill="#c9d1d9"> = </tspan>
+      <tspan fill="#8b949e">[</tspan>
+      <tspan fill="#a5d6ff">"</tspan>
+      <tspan fill="#7ee787">Building</tspan>
+      <tspan fill="#a5d6ff">"</tspan>
+      <tspan fill="#c9d1d9">, </tspan>
+      <tspan fill="#a5d6ff">"</tspan>
+      <tspan fill="#7ee787">Creating</tspan>
+      <tspan fill="#a5d6ff">"</tspan>
+      <tspan fill="#c9d1d9">, </tspan>
+      <tspan fill="#a5d6ff">"</tspan>
+      <tspan fill="#7ee787">Innovating</tspan>
+      <tspan fill="#a5d6ff">"</tspan>
+      <tspan fill="#8b949e">]</tspan>
+      <tspan fill="#c9d1d9">;</tspan>
+    </text>
+    <!-- Blinking cursor -->
+    <rect x="700" y="143" width="8" height="15" fill="#58a6ff" class="cursor-blink" rx="1" />
+  </g>
+
+  <!-- ==================== TERMINAL BADGE ==================== -->
+  <g class="terminal-text" filter="url(#shadow)">
+    <g transform="translate(370, 185)">
+      <!-- Badge background -->
+      <rect x="0" y="0" width="210" height="32" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1" />
+      <rect x="0" y="0" width="210" height="32" rx="8" fill="none" stroke="#238636" stroke-width="0.5" opacity="0.3" class="border-glow" />
+
+      <!-- Traffic light dots -->
+      <circle cx="16" cy="16" r="4" fill="#ff7b72" opacity="0.9" />
+      <circle cx="30" cy="16" r="4" fill="#e3b341" opacity="0.9" />
+      <circle cx="44" cy="16" r="4" fill="#7ee787" opacity="0.9" />
+
+      <!-- Terminal text -->
+      <text x="58" y="20">
+        <tspan fill="#8b949e">$ </tspan>
+        <tspan fill="#58a6ff">status</tspan>
+        <tspan fill="#c9d1d9">: </tspan>
+        <tspan fill="#7ee787" font-weight="bold">open to work</tspan>
+      </text>
+
+      <!-- Small blinking dot indicator -->
+      <circle cx="198" cy="16" r="3" fill="#7ee787" opacity="0.8" class="particle" />
+    </g>
+  </g>
+
+  <!-- ==================== DECORATIVE ELEMENTS ==================== -->
+  <!-- Bottom accent dots -->
+  <g opacity="0.4">
+    <circle cx="370" cy="248" r="1.5" fill="#58a6ff" class="particle-2" />
+    <circle cx="385" cy="248" r="1.5" fill="#d2a8ff" class="particle-4" />
+    <circle cx="400" cy="248" r="1.5" fill="#7ee787" class="particle-6" />
+    <circle cx="415" cy="248" r="1.5" fill="#ff7b72" class="particle" />
+    <circle cx="430" cy="248" r="1.5" fill="#a5d6ff" class="particle-3" />
+    <circle cx="445" cy="248" r="1.5" fill="#58a6ff" class="particle-5" />
+    <circle cx="460" cy="248" r="1.5" fill="#d2a8ff" class="particle-2" />
+    <circle cx="475" cy="248" r="1.5" fill="#7ee787" class="particle-4" />
+    <circle cx="490" cy="248" r="1.5" fill="#ff7b72" class="particle-6" />
+  </g>
+
+  <!-- Side accent brackets -->
+  <g opacity="0.15" class="shimmer-line">
+    <text x="260" y="160" font-family="monospace" font-size="50" fill="#58a6ff">&#123;</text>
+    <text x="730" y="160" font-family="monospace" font-size="50" fill="#58a6ff">&#125;</text>
+  </g>
+
+  <!-- Corner decorations -->
+  <g opacity="0.2">
+    <!-- Top-left corner -->
+    <line x1="15" y1="15" x2="45" y2="15" stroke="#58a6ff" stroke-width="1" />
+    <line x1="15" y1="15" x2="15" y2="45" stroke="#58a6ff" stroke-width="1" />
+    <!-- Top-right corner -->
+    <line x1="835" y1="15" x2="805" y2="15" stroke="#d2a8ff" stroke-width="1" />
+    <line x1="835" y1="15" x2="835" y2="45" stroke="#d2a8ff" stroke-width="1" />
+    <!-- Bottom-left corner -->
+    <line x1="15" y1="285" x2="45" y2="285" stroke="#7ee787" stroke-width="1" />
+    <line x1="15" y1="285" x2="15" y2="255" stroke="#7ee787" stroke-width="1" />
+    <!-- Bottom-right corner -->
+    <line x1="835" y1="285" x2="805" y2="285" stroke="#ff7b72" stroke-width="1" />
+    <line x1="835" y1="285" x2="835" y2="255" stroke="#ff7b72" stroke-width="1" />
+  </g>
+
+  <!-- Bottom gradient line -->
+  <rect x="0" y="298" width="850" height="2" fill="url(#topEdge)" rx="1" class="shimmer-line" opacity="0.6" />
+</svg>

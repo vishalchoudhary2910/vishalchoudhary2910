@@ -1,0 +1,414 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 150" width="850" height="150">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="100%" style="stop-color:#161b22"/>
+    </linearGradient>
+
+    <!-- Green glow filter -->
+    <filter id="greenGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-color="#7ee787" flood-opacity="0.6" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Blue glow filter -->
+    <filter id="blueGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-color="#58a6ff" flood-opacity="0.5" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Dot glow filter -->
+    <filter id="dotGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#7ee787" flood-opacity="0.8" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Scanline pattern -->
+    <pattern id="scanlines" patternUnits="userSpaceOnUse" width="850" height="4">
+      <rect width="850" height="2" fill="transparent"/>
+      <rect y="2" width="850" height="2" fill="rgba(0,0,0,0.15)"/>
+    </pattern>
+
+    <!-- Grid pattern -->
+    <pattern id="grid" patternUnits="userSpaceOnUse" width="25" height="25">
+      <path d="M 25 0 L 0 0 0 25" fill="none" stroke="rgba(48,54,61,0.3)" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="gridSmall" patternUnits="userSpaceOnUse" width="5" height="5">
+      <path d="M 5 0 L 0 0 0 5" fill="none" stroke="rgba(48,54,61,0.12)" stroke-width="0.3"/>
+    </pattern>
+
+    <!-- Clip path for pulse line area -->
+    <clipPath id="pulseArea">
+      <rect x="280" y="5" width="560" height="140"/>
+    </clipPath>
+  </defs>
+
+  <style>
+    @keyframes drawPulse {
+      0% { stroke-dashoffset: 1600; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes drawPulse2 {
+      0% { stroke-dashoffset: 1600; }
+      100% { stroke-dashoffset: 0; }
+    }
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    @keyframes pulseDot {
+      0%, 100% { r: 2; opacity: 0.6; }
+      50% { r: 4; opacity: 1; }
+    }
+    @keyframes fadeInText {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.4; }
+      50% { opacity: 0.9; }
+    }
+    @keyframes scanMove {
+      0% { transform: translateY(-150px); }
+      100% { transform: translateY(150px); }
+    }
+    @keyframes statusBlink {
+      0%, 70% { opacity: 1; }
+      71%, 100% { opacity: 0.3; }
+    }
+    @keyframes sweep {
+      0% { x: 280; }
+      100% { x: 840; }
+    }
+
+    .pulse-line {
+      stroke-dasharray: 1600;
+      stroke-dashoffset: 1600;
+      animation: drawPulse 4s ease-in-out infinite;
+    }
+    .pulse-line-glow {
+      stroke-dasharray: 1600;
+      stroke-dashoffset: 1600;
+      animation: drawPulse2 4s ease-in-out infinite;
+    }
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
+    }
+    .dot-pulse {
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+    .dot-pulse-d1 { animation-delay: 0s; }
+    .dot-pulse-d2 { animation-delay: 0.3s; }
+    .dot-pulse-d3 { animation-delay: 0.6s; }
+    .dot-pulse-d4 { animation-delay: 0.9s; }
+    .dot-pulse-d5 { animation-delay: 1.2s; }
+    .dot-pulse-d6 { animation-delay: 1.5s; }
+    .text-fade {
+      animation: fadeInText 1.5s ease-out forwards;
+    }
+    .text-fade-d1 { animation-delay: 0.2s; opacity: 0; }
+    .text-fade-d2 { animation-delay: 0.6s; opacity: 0; }
+    .text-fade-d3 { animation-delay: 1.0s; opacity: 0; }
+    .glow-pulse {
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+    .status-blink {
+      animation: statusBlink 2s ease-in-out infinite;
+    }
+    .scan-bar {
+      animation: scanMove 3s linear infinite;
+    }
+    .sweep-line {
+      animation: sweep 4s linear infinite;
+    }
+  </style>
+
+  <!-- Background -->
+  <rect width="850" height="150" fill="url(#bgGrad)" rx="5"/>
+
+  <!-- Border glow -->
+  <rect width="848" height="148" x="1" y="1" fill="none" stroke="rgba(126,231,135,0.1)" stroke-width="1" rx="5"/>
+
+  <!-- Small grid -->
+  <rect width="850" height="150" fill="url(#gridSmall)" rx="5"/>
+
+  <!-- Main grid -->
+  <rect width="850" height="150" fill="url(#grid)" rx="5"/>
+
+  <!-- Horizontal guide lines in pulse area -->
+  <line x1="280" y1="40" x2="840" y2="40" stroke="rgba(126,231,135,0.05)" stroke-width="0.5" stroke-dasharray="3,3"/>
+  <line x1="280" y1="75" x2="840" y2="75" stroke="rgba(126,231,135,0.08)" stroke-width="0.5"/>
+  <line x1="280" y1="110" x2="840" y2="110" stroke="rgba(126,231,135,0.05)" stroke-width="0.5" stroke-dasharray="3,3"/>
+
+  <!-- Vertical separator -->
+  <line x1="270" y1="10" x2="270" y2="140" stroke="rgba(48,54,61,0.6)" stroke-width="1" stroke-dasharray="4,4"/>
+
+  <!-- Left panel: Text labels -->
+  <g>
+    <!-- Title -->
+    <text x="20" y="30" font-family="'Courier New',monospace" font-size="10" fill="#484f58" letter-spacing="3" class="text-fade text-fade-d1">
+      CODING ACTIVITY
+    </text>
+
+    <!-- Decorative line under title -->
+    <line x1="20" y1="38" x2="160" y2="38" stroke="rgba(126,231,135,0.2)" stroke-width="0.5"/>
+
+    <!-- Status line -->
+    <text x="20" y="62" font-family="'Courier New',monospace" font-size="11" class="text-fade text-fade-d2">
+      <tspan fill="#484f58">&gt;&gt; Status: </tspan>
+      <tspan fill="#7ee787" class="status-blink">ACTIVE</tspan>
+    </text>
+
+    <!-- Active indicator dot -->
+    <circle cx="165" cy="58" r="3" fill="#7ee787" class="dot-pulse dot-pulse-d1" filter="url(#dotGlow)"/>
+
+    <!-- Focus line -->
+    <text x="20" y="85" font-family="'Courier New',monospace" font-size="11" class="text-fade text-fade-d3">
+      <tspan fill="#484f58">&gt;&gt; Focus: </tspan>
+      <tspan fill="#58a6ff">Deep Work</tspan>
+    </text>
+
+    <!-- Uptime / extra info -->
+    <text x="20" y="110" font-family="'Courier New',monospace" font-size="9" fill="#30363d" class="text-fade text-fade-d3">
+      <tspan fill="#484f58">&gt;&gt; </tspan>
+      <tspan fill="#30363d">commits: </tspan>
+      <tspan fill="#7ee787">1,247</tspan>
+    </text>
+
+    <!-- Blinking cursor -->
+    <text x="20" y="132" font-family="'Courier New',monospace" font-size="12" fill="#7ee787" class="cursor-blink" filter="url(#greenGlow)">
+      _
+    </text>
+    <text x="30" y="132" font-family="'Courier New',monospace" font-size="9" fill="#30363d">
+      ready
+    </text>
+  </g>
+
+  <!-- Pulse area -->
+  <g clip-path="url(#pulseArea)">
+
+    <!-- Heartbeat / EKG polyline — coding sessions as spikes -->
+    <!-- Pattern: flatline → small bump → flatline → BIG spike → flatline → medium spike → flatline → BIG spike → flatline → small bump → flatline -->
+    <polyline
+      class="pulse-line-glow"
+      fill="none"
+      stroke="rgba(126,231,135,0.15)"
+      stroke-width="6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      points="
+        280,75
+        300,75
+        310,75
+        318,70
+        325,80
+        330,75
+        345,75
+        360,75
+        368,75
+        373,65
+        376,30
+        380,95
+        384,20
+        388,85
+        393,60
+        398,75
+        415,75
+        435,75
+        450,75
+        455,75
+        460,75
+        468,72
+        472,55
+        476,85
+        480,45
+        484,80
+        488,65
+        492,75
+        510,75
+        535,75
+        555,75
+        560,75
+        565,75
+        575,75
+        580,75
+        590,75
+        598,68
+        602,25
+        606,100
+        610,15
+        614,90
+        618,50
+        622,70
+        626,75
+        645,75
+        665,75
+        675,72
+        680,68
+        685,78
+        690,75
+        710,75
+        730,75
+        745,75
+        750,70
+        755,80
+        760,75
+        780,75
+        800,75
+        820,75
+        840,75
+      "
+      filter="url(#greenGlow)"
+    />
+
+    <!-- Main heartbeat line -->
+    <polyline
+      class="pulse-line"
+      fill="none"
+      stroke="#7ee787"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      points="
+        280,75
+        300,75
+        310,75
+        318,70
+        325,80
+        330,75
+        345,75
+        360,75
+        368,75
+        373,65
+        376,30
+        380,95
+        384,20
+        388,85
+        393,60
+        398,75
+        415,75
+        435,75
+        450,75
+        455,75
+        460,75
+        468,72
+        472,55
+        476,85
+        480,45
+        484,80
+        488,65
+        492,75
+        510,75
+        535,75
+        555,75
+        560,75
+        565,75
+        575,75
+        580,75
+        590,75
+        598,68
+        602,25
+        606,100
+        610,15
+        614,90
+        618,50
+        622,70
+        626,75
+        645,75
+        665,75
+        675,72
+        680,68
+        685,78
+        690,75
+        710,75
+        730,75
+        745,75
+        750,70
+        755,80
+        760,75
+        780,75
+        800,75
+        820,75
+        840,75
+      "
+    />
+
+    <!-- Sweep / scanner line that follows the pulse -->
+    <rect class="sweep-line" y="0" width="2" height="150" fill="rgba(126,231,135,0.15)" rx="1">
+      <animate attributeName="x" from="280" to="840" dur="4s" repeatCount="indefinite"/>
+    </rect>
+
+    <!-- Pulsing data points at spike peaks -->
+    <!-- Spike 1 peaks -->
+    <circle cx="384" cy="20" r="2" fill="#7ee787" class="dot-pulse dot-pulse-d1" filter="url(#dotGlow)"/>
+    <circle cx="376" cy="30" r="2" fill="#7ee787" class="dot-pulse dot-pulse-d2" filter="url(#dotGlow)"/>
+
+    <!-- Spike 2 peaks -->
+    <circle cx="480" cy="45" r="2" fill="#58a6ff" class="dot-pulse dot-pulse-d3" filter="url(#blueGlow)"/>
+    <circle cx="472" cy="55" r="2" fill="#58a6ff" class="dot-pulse dot-pulse-d4" filter="url(#blueGlow)"/>
+
+    <!-- Spike 3 peaks -->
+    <circle cx="610" cy="15" r="2" fill="#7ee787" class="dot-pulse dot-pulse-d5" filter="url(#dotGlow)"/>
+    <circle cx="602" cy="25" r="2" fill="#7ee787" class="dot-pulse dot-pulse-d6" filter="url(#dotGlow)"/>
+
+    <!-- Small bump data points -->
+    <circle cx="325" cy="80" r="1.5" fill="rgba(126,231,135,0.5)" class="dot-pulse dot-pulse-d3"/>
+    <circle cx="680" cy="68" r="1.5" fill="rgba(126,231,135,0.5)" class="dot-pulse dot-pulse-d5"/>
+    <circle cx="750" cy="70" r="1.5" fill="rgba(126,231,135,0.5)" class="dot-pulse dot-pulse-d2"/>
+
+    <!-- Axis labels along bottom -->
+    <text x="290" y="142" font-family="'Courier New',monospace" font-size="7" fill="#30363d">00:00</text>
+    <text x="395" y="142" font-family="'Courier New',monospace" font-size="7" fill="#30363d">06:00</text>
+    <text x="500" y="142" font-family="'Courier New',monospace" font-size="7" fill="#30363d">12:00</text>
+    <text x="610" y="142" font-family="'Courier New',monospace" font-size="7" fill="#30363d">18:00</text>
+    <text x="730" y="142" font-family="'Courier New',monospace" font-size="7" fill="#30363d">23:59</text>
+
+    <!-- Y-axis labels -->
+    <text x="840" y="43" font-family="'Courier New',monospace" font-size="6" fill="#30363d" text-anchor="end">HIGH</text>
+    <text x="840" y="78" font-family="'Courier New',monospace" font-size="6" fill="#30363d" text-anchor="end">MID</text>
+    <text x="840" y="113" font-family="'Courier New',monospace" font-size="6" fill="#30363d" text-anchor="end">LOW</text>
+  </g>
+
+  <!-- Scanline CRT overlay -->
+  <rect width="850" height="150" fill="url(#scanlines)" rx="5" opacity="0.5"/>
+
+  <!-- Scanning bar for CRT feel -->
+  <rect width="850" height="3" fill="rgba(126,231,135,0.03)" class="scan-bar" rx="0"/>
+
+  <!-- Corner decorations -->
+  <!-- Top-left -->
+  <polyline points="5,15 5,5 15,5" fill="none" stroke="rgba(126,231,135,0.3)" stroke-width="1"/>
+  <!-- Top-right -->
+  <polyline points="835,5 845,5 845,15" fill="none" stroke="rgba(126,231,135,0.3)" stroke-width="1"/>
+  <!-- Bottom-left -->
+  <polyline points="5,135 5,145 15,145" fill="none" stroke="rgba(126,231,135,0.3)" stroke-width="1"/>
+  <!-- Bottom-right -->
+  <polyline points="835,145 845,145 845,135" fill="none" stroke="rgba(126,231,135,0.3)" stroke-width="1"/>
+
+  <!-- Top-right status indicators -->
+  <circle cx="820" cy="12" r="3" fill="#7ee787" class="glow-pulse" filter="url(#dotGlow)"/>
+  <circle cx="808" cy="12" r="2" fill="#58a6ff" opacity="0.5"/>
+  <circle cx="798" cy="12" r="2" fill="#484f58" opacity="0.3"/>
+
+  <!-- Vignette / edge darkening -->
+  <rect width="850" height="150" rx="5" fill="none" stroke="rgba(0,0,0,0.4)" stroke-width="8" opacity="0.3"/>
+</svg>
